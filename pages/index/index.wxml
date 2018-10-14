@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<view class="container">
+  <view wx:for="{{ toplicList }}" wx:key="{{ index }}" class="toplic-list">
+    {{ index }}: {{ item.title }}
+  </view>
+  
+</view>
