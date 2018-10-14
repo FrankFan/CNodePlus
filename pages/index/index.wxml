@@ -1,7 +1,47 @@
 <!--index.wxml-->
 <view class="container">
-  <view wx:for="{{ toplicList }}" wx:key="{{ index }}" class="toplic-list">
-    {{ index }}: {{ item.title }}
-  </view>
-  
+  <!-- <view wx:for="{{ toplicList }}" wx:key="{{ index }}" class="toplic-list">
+    {{ index + 1 }}: {{ item.title }}
+  </view> -->
+
+  <loading hidden="{{hidden}}" bindchange="loadingChange">
+    加载中...
+  </loading>
+  <scroll-view 
+    scroll-y="true" 
+    style="height: 100%;" 
+    bindscrolltolower="loadMore" 
+    bindscrolltoupper="refesh">
+    <view wx:if="{{hasRefesh}}" class="loading-row">
+      <icon type="waiting" size="45" />
+      <text>刷新中...</text>
+    </view>
+    <view wx:else class="no-data">
+      <text>没有更多内容了</text>
+    </view>
+    <view class="topic-list-item" 
+      wx:for="{{ topicList }}" 
+      wx:key=" {{ item.index }}"
+      wx:for-item="item" 
+      data-id="{{ item.id }}"
+      bindtap="bindViewTap">
+      <image src="{{item.author.avatar_url }}"></image>
+      <view class="text">
+        <view class='title'> 标题:{{item.title}}</view>
+        <view class='author' style=""> 
+          作者:{{item.author.loginname}}
+        </view>
+      </view>
+    </view>
+    <view class="footer">
+      <view wx:if="{{hasMore}}" 
+         class='footer-loading'>
+        <icon type="waiting" size="45" />
+        <text>玩命的加载中...</text>
+      </view>
+      <view wx:else>
+        <text>没有更多内容了</text>
+      </view>
+    </view>
+  </scroll-view>
 </view>

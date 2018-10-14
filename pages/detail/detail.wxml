@@ -1,0 +1,4 @@
+<!--pages/detail/detail.wxml-->
+<rich-text>
+{{ content }}
+</rich-text>

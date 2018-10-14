@@ -1,31 +1,41 @@
 //index.js
+const http = require('../../utils/httpClient.js');
+
 //获取应用实例
 const app = getApp()
 
 Page({
   data: {
-    toplicList: [],
+    hidden: false,
+    topicList: [],
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function(e) {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../detail/detail?id=' + e.currentTarget.dataset.id,
     })
   },
-  onLoad: function () {
+  onLoad: function() {
     this.fetchData();
   },
-  fetchData: function () {
+  fetchData: function() {
     wx.request({
-      url: 'https://cnodejs.org/api/v1/topics',
-      success: (res) => {
+        url: 'https://cnodejs.org/api/v1/topics',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        method: 'get',
+        success: (res) => {
+          console.log(res);
+          var list = res.data.data;
+          this.setData({
+            topicList: list,
+            hidden: true,
+          });
+      },
+      fail: (res) => {
         console.log(res);
-        var list = res.data.data;
-        debugger;
-        this.setData({
-          toplicList: list,
-        });
-      }
+      },
     })
-  }
-})
+  },
+});
