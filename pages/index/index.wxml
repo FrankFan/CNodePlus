@@ -12,13 +12,13 @@
     style="height: 100%;" 
     bindscrolltolower="loadMore" 
     bindscrolltoupper="refesh">
-    <view wx:if="{{hasRefesh}}" class="loading-row">
+    <!-- <view wx:if="{{hasRefesh}}" class="loading-row">
       <icon type="waiting" size="45" />
       <text>刷新中...</text>
     </view>
     <view wx:else class="no-data">
       <text>没有更多内容了</text>
-    </view>
+    </view> -->
     <view class="topic-list-item" 
       wx:for="{{ topicList }}" 
       wx:key=" {{ item.index }}"

@@ -1,4 +1,6 @@
 //detail.js
+var WxParse = require('../../pages/wxParse/wxParse.js');
+console.log(WxParse);
 
 Page({
   data: {
@@ -16,11 +18,12 @@ Page({
       method: 'get',
       success: (res) => {
         console.log(res);
-        var content = res.data.data.content;
+        var article = res.data.data.content;
         this.setData({
-          content: content || '暂无内容',
+          content: article || '暂无内容',
           loading: false,
         });
+        WxParse.wxParse('article', 'md', article, this, 5);
       },
       fail: (res) => {
         console.log(res);

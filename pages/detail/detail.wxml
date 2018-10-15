@@ -1,4 +1,4 @@
 <!--pages/detail/detail.wxml-->
-<rich-text>
-{{ content }}
-</rich-text>
+<import src="../../pages/wxParse/wxParse.wxml"/>
+
+<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
