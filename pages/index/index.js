@@ -17,6 +17,12 @@ Page({
   },
   onLoad: function() {
     this.fetchData();
+    wx.setNavigationBarTitle({
+      title: 'CNodePlus',
+      success: (res) => {
+        console.log('设置成功');
+      }
+    });
   },
   fetchData: function() {
     wx.request({

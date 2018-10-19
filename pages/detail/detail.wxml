@@ -2,3 +2,5 @@
 <import src="../../pages/wxParse/wxParse.wxml"/>
 
 <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+<!-- <view>{{ content }}</view> -->
+<!-- <wemark md="{{ content }}" link highlight type="rich-text"></wemark> -->

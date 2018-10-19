@@ -12,6 +12,7 @@
 
 .topic-list-item {
   display: flex;
+  border-bottom: 1px solid #fcfcfc;
 }
 
 .topic-list-item image {
