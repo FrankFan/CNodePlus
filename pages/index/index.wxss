@@ -1,3 +1,7 @@
+.container {
+  margin: 0 20rpx 20rpx 20rpx;
+}
+
 .loading-row {
   display: flex;
   flex-direction: row;
@@ -12,7 +16,9 @@
 
 .topic-list-item {
   display: flex;
-  border-bottom: 1px solid #fcfcfc;
+  align-items: center;
+  border-bottom: 1rpx solid #ececec;
+  margin: 10rpx;
 }
 
 .topic-list-item image {
@@ -24,13 +30,12 @@
 
 .topic-list-item .text {
   flex: 1;
-  margin: 5px;
   font-size: 16px;
 }
 
 .topic-list-item .author {
   margin: 5px;
-  color: red;
+  color: #1aad16;
   font-size: 16px;
 }
 

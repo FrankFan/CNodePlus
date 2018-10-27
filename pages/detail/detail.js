@@ -1,21 +1,21 @@
 //detail.js
-var WxParse = require('../../pages/wxParse/wxParse.js');
+const app = getApp();
 
 Page({
   data: {
-    loading: true,
-    content: '...',
+    article: {},
+  },
+  tap() {
+    console.log('tap')
   },
   onLoad(options) {
+    wx.showLoading({
+      title: '加载中',
+    });
     var id = options.id;
     console.log('id= ' + id);
     this.getDetail(id);
-    wx.setNavigationBarTitle({
-      title: 'Detail',
-      success: (res) => {
-        console.log('设置成功');
-      }
-    });
+    wx.setNavigationBarTitle({ title: 'Detail' });
   },
   onPullDownRefresh() {
     console.log('onPullDownRefresh');
@@ -25,17 +25,15 @@ Page({
   },
   getDetail(id) {
     wx.request({
-      url: 'https://cnodejs.org/api/v1/topic/' + id + '?mdrender=true',
+      url: 'https://cnodejs.org/api/v1/topic/' + id + '?mdrender=false',
       method: 'get',
       success: (res) => {
-        // console.log(res);
-        var article = res.data.data.content;
-        console.log(article);
+        let article = res.data.data.content;
+        let data = app.towxml.toJson(article, 'markdown');
         this.setData({
-          content: article || '暂无内容',
-          loading: false,
+          article: data,
         });
-        WxParse.wxParse('article', 'md', article, this, 5);
+        wx.hideLoading();
       },
       fail: (res) => {
         // console.log(res);

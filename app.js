@@ -1,9 +1,9 @@
 //app.js
+const Towxml = require('/towxml/main');
+
 App({
   onLaunch: function () {
     console.log('App onLaunch');
   },
-  globalData: {
-    userInfo: null
-  }
+  towxml: new Towxml()
 })

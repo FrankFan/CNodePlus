@@ -40,7 +40,7 @@
         <text>玩命的加载中...</text>
       </view>
       <view wx:else>
-        <text>没有更多内容了</text>
+        <!-- <text>没有更多内容了</text> -->
       </view>
     </view>
   </scroll-view>

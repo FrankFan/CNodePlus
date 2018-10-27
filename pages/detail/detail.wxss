@@ -1,6 +1,8 @@
 /* pages/detail/detail.wxss */
-@import "../../pages/wxParse/wxParse.wxss";
 
-view.markdown-text {
-  padding: 20px;
+@import '/towxml/style/main.wxss';
+@import '/towxml/style/theme/light.wxss';
+
+view.h2w {
+  padding-bottom: 50rpx;
 }

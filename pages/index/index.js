@@ -26,14 +26,14 @@ Page({
   },
   fetchData: function() {
     wx.request({
-        url: 'https://cnodejs.org/api/v1/topics',
+        method: 'get',
+        url: 'https://cnodejs.org/api/v1/topics?tab=good',
         header: {
           'content-type': 'application/x-www-form-urlencoded',
         },
-        method: 'get',
         success: (res) => {
-          console.log(res);
           var list = res.data.data;
+          console.log(list);
           this.setData({
             topicList: list,
             hidden: true,

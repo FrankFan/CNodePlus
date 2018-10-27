@@ -1,6 +1,3 @@
 {
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "wemark": "../../wemark/wemark"
-  }
+  "enablePullDownRefresh": false
 }
