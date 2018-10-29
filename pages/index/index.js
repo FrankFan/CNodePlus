@@ -6,11 +6,20 @@ const app = getApp()
 
 Page({
   data: {
-    goodList: [],
-    jobList: [],
-    shareList: [],
-    page: 1,
+    good: {
+      list: [],
+      page: 1,
+    },
+    share: {
+      list: [],
+      page: 1,
+    },
+    job: {
+      list: [],
+      page: 1,
+    },
     hasMore: false,
+    noMore: false,
     currentTab: 0,
   },
   //事件处理函数
@@ -23,7 +32,7 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
-    this.fetchData('good', this.data.page);
+    this.fetchData('good', this.data.good.page);
     wx.setNavigationBarTitle({
       title: 'CNodePlus'
     });
@@ -62,24 +71,30 @@ Page({
           var newList = []
           
           if (tab === 'good') {
-            newList = this.data.goodList.concat(list);
+            newList = this.data.good.list.concat(list);
+            
             this.setData({
-              goodList: newList,
-              page: page + 1,
+              good: {
+                list: newList,
+                page: page + 1,
+              },
               hasMore: false,
             });
           } else if (tab === 'share') {
-            newList = this.data.shareList.concat(list);
+            newList = this.data.share.list.concat(list);
+            const share = this.data.share;
             this.setData({
-              shareList: newList,
-              page: page + 1,
+              ['share.list']: newList,
+              ['share.page']: page + 1,
               hasMore: false,
             });
           } else if (tab === 'job') {
-            newList = this.data.jobList.concat(list);
+            newList = this.data.job.list.concat(list);
             this.setData({
-              jobList: newList,
-              page: page + 1,
+              job: {
+                list: newList,
+                page: page + 1,
+              },
               hasMore: false,
             });
           }
@@ -97,12 +112,11 @@ Page({
   },
   loadMore: function(e) {
     const tab = e.target.dataset.tab;
-    console.log('loadmore ' + this.data.page);
+    console.log(`loadmore tab = ${tab}  page = ` + this.data[tab].page);
     this.setData({
       hasMore: true,
     });
-    console.log(tab);
-    this.fetchData(tab, this.data.page);
+    this.fetchData(tab, this.data[tab].page);
   },
   //滑动切换
   swiperTab: function(e) {
@@ -128,7 +142,9 @@ Page({
   },
 
   loadWithTab: function (currentTabIndex) {
-    console.log('loadWithTab');
+    wx.showLoading({
+      title: '加载中...',
+    });
     let tab = '';
     if (currentTabIndex == '0') {
       tab = 'good';
@@ -137,7 +153,6 @@ Page({
     } else if (currentTabIndex == '2') {
       tab = 'job';
     }
-    console.log(`tab = ${tab}`);
-    this.fetchData(tab, this.data.page);
+    this.fetchData(tab, this.data[tab].page);
   }
 });

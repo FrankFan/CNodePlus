@@ -1,14 +1,17 @@
 .container {
-  margin: 0 0 20px 0;
+  padding-bottom: 10px;
   font-family: "STHeitiTC-Light", "Microsoft YaHei Light", "Hiragino Sans GB", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   line-height: 1.8;
   word-wrap: break-word;
   word-break:break-all;
-  padding-top: 45px;
 }
 
-.wrap {
-  padding-top: 65px;
+.swiper {
+  padding-top: 49px;
+}
+
+.scroll-view {
+  /* padding-top: 65px; */
 }
 
 .swiper-tab{
@@ -22,19 +25,20 @@
   justify-content: space-between;
   position: fixed;
   top: 0;
+  left: 0;
+  z-index: 9999;
 }
 .swiper-tab-item{
-    width: 30%; 
-    color:#434343;
+  width: 30%; 
+  color:#434343;
 }
 .active{
-    color:#1AAD16;
-    border-bottom: 4rpx solid #1AAD16;
+  color:#1AAD16;
+  border-bottom: 4rpx solid #1AAD16;
 }
 swiper{
   text-align: center;
 }
-
 
 .loading-row {
   display: flex;
@@ -96,5 +100,4 @@ swiper{
 .footer .noMore {
   color: #888888;
   justify-content: center;
-  display: none;
 }
