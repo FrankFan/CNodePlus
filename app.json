@@ -9,6 +9,6 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "CNodePlus",
     "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": false
   }
 }

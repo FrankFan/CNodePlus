@@ -41,6 +41,13 @@ Page({
       },
       fail: (res) => {
         console.log(res);
+        this.setData({
+          hidden: true,
+        });
+        wx.showToast({
+          topicList: [],
+          title: 'request failed',
+        });
       },
     })
   },
