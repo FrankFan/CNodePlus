@@ -2,4 +2,12 @@
 
 <import src="/towxml/entry.wxml"/>
 
+<view class="container">
+  <view class="title">{{ title }}</view>
+  <view class="wrap">
+    <view class="name">{{ author.loginname }}</view>
+    <view class="date">{{ create_at }}</view>
+  </view>
+</view>
+
 <template is="entry" data="{{...article}}"/>

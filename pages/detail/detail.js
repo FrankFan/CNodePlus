@@ -1,4 +1,6 @@
 //detail.js
+const util = require('../../utils/util.js')
+
 const app = getApp();
 
 Page({
@@ -29,9 +31,17 @@ Page({
       method: 'get',
       success: (res) => {
         let article = res.data.data.content;
+        const {
+          author,
+          title,
+          create_at,
+        } = res.data.data;
         let data = app.towxml.toJson(article, 'markdown');
         this.setData({
           article: data,
+          author,
+          title,
+          create_at: util.formatTime(new Date(create_at))
         });
         wx.hideLoading();
       },

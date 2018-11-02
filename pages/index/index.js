@@ -22,7 +22,6 @@ Page({
     noMore: false,
     currentTab: 0,
   },
-  //事件处理函数
   bindViewTap: function(e) {
     wx.navigateTo({
       url: '../detail/detail?id=' + e.currentTarget.dataset.id,
@@ -84,8 +83,10 @@ Page({
             newList = this.data.share.list.concat(list);
             const share = this.data.share;
             this.setData({
-              ['share.list']: newList,
-              ['share.page']: page + 1,
+              share: {
+                list: newList,
+                page: page + 1,
+              },
               hasMore: false,
             });
           } else if (tab === 'job') {
@@ -120,11 +121,13 @@ Page({
   },
   //滑动切换
   swiperTab: function(e) {
+    const currentTabIndex = e.detail.current;
     this.setData({
-      currentTab: e.detail.current
+      currentTab: currentTabIndex
     });
-    if(this.data.page <= 3 ) {
-      this.loadWithTab(e.detail.current);
+    const tab = this.getTabNameByIndex(currentTabIndex);
+    if (this.data[tab].page <= 3 ) {
+      this.loadWithTab(currentTabIndex);
     }
   },
   //点击切换
@@ -145,14 +148,19 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
+    let tab = this.getTabNameByIndex(currentTabIndex);
+    this.fetchData(tab, this.data[tab].page);
+  },
+
+  getTabNameByIndex: function(index) {
     let tab = '';
-    if (currentTabIndex == '0') {
+    if (index == '0') {
       tab = 'good';
-    } else if (currentTabIndex == '1') {
+    } else if (index == '1') {
       tab = 'share';
-    } else if (currentTabIndex == '2') {
+    } else if (index == '2') {
       tab = 'job';
     }
-    this.fetchData(tab, this.data[tab].page);
+    return tab;
   }
 });
