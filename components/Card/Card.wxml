@@ -1,17 +1,18 @@
 <!--components/Card/Card.wxml-->
+<wxs module="filter" src="../../filter/extract.wxs"></wxs>
 
 <view class='card'>
   <view class='header'>
-    <Tag />
-    <view class='num'><view class='highlight'>51</view>/8795</view>
+    <tag tagType="{{ data.tab }}" />
+    <view class='num'><view class='highlight'>{{ data.reply_count }}</view>/{{ data.visitCount }}</view>
   </view>
-  <view class='title ellipsis'>Egg.js视频教程-Eggjs入门视频教程网盘免费分享-10讲入门基础希望老铁门能喜欢 视频教程-Eggjs入门视频教程网盘免费分享-10讲入门基础希望老铁门能喜欢</view>
+  <view class='title ellipsis'>{{ data.title }}</view>
   <view class='body'>
-    <view class='abstract ellipsis'>Egg.js入门视频教程主要讲了Egg的环境搭建   egg的控制器      egg服务  egg中间件   egg路由 egg扩展   egg模板引擎  egg cookie   egg sessionEggjs 视频教程百度网盘分享接</view>
+    <view class='abstract ellipsis'>{{ filter.extract(title) }}</view>
   </view>
   <view class='footer'>
-    <image src="https://avatars0.githubusercontent.com/u/42952042?v=4&s=120"></image>
-    <view class='author'>franfan</view>
-    <view class='post-date'>创建于：2019-09-07 16:33:09</view>
+    <image src="{{ author.avatar_url }}"></image>
+    <view class='author'>{{ author.loginname }}</view>
+    <view class='post-date'>创建于：{{ create_at }}</view>
   </view>
 </view>

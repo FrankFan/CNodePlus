@@ -1,0 +1,14 @@
+var extractText = function(text, len) {
+  if(!text) {
+    return;
+  }
+  var length = len || 100;
+  if (text.length > length) {
+    return text.substring(0, length);
+  }
+  return text;
+}
+
+module.exports = {
+  extract: extractText,
+}

@@ -1,8 +1,18 @@
 /* components/Tag/Tag.wxss */
-.top {
-  background: #09bb07;
-  color: #fff;
+
+.green,
+.gray {
   padding: 0px 4px;
   font-size: 14px;
   border-radius: 2px;
+}
+
+.green {
+  background: #09bb07;
+  color: #fff;
+}
+
+.gray {
+  background: rgba(178, 178, 178, .6);
+  color: rgba(255, 255, 255, .6);
 }

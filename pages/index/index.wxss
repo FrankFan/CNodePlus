@@ -11,6 +11,7 @@
 }
 
 .swiper-tab{
+  background: #fff;
   width: 100%;
   border-bottom: 2rpx solid #ccc;
   text-align: center;
