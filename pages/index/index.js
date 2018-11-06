@@ -28,20 +28,20 @@ Page({
     })
   },
   onLoad: function() {
-    wx.showLoading({
-      title: '加载中...',
-    });
-    this.fetchData('good', this.data.good.page);
-    wx.setNavigationBarTitle({
-      title: 'CNodePlus'
-    });
-    wx.getSystemInfo({
-      success: (res) => {
-        this.setData({
-          height: res.windowHeight
-        });
-      }
-    });
+    // wx.showLoading({
+    //   title: '加载中...',
+    // });
+    // this.fetchData('good', this.data.good.page);
+    // wx.setNavigationBarTitle({
+    //   title: 'CNodePlus'
+    // });
+    // wx.getSystemInfo({
+    //   success: (res) => {
+    //     this.setData({
+    //       height: res.windowHeight
+    //     });
+    //   }
+    // });
   },
   fetchData: function(tab, page) {
     wx.request({

@@ -1,6 +1,11 @@
 /**app.wxss**/
 
+page {
+  background: #eeeeee;
+}
+
 .container {
+  padding: 14px;
   height: 100%;
   display: flex;
   flex-direction: column;

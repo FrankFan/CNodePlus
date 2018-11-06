@@ -4,7 +4,8 @@
     "pages/detail/detail"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "CNodePlus",
     "navigationBarTextStyle": "black",

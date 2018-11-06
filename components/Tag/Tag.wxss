@@ -1,0 +1,8 @@
+/* components/Tag/Tag.wxss */
+.top {
+  background: #09bb07;
+  color: #fff;
+  padding: 0px 4px;
+  font-size: 14px;
+  border-radius: 2px;
+}
