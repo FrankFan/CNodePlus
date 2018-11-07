@@ -27,13 +27,16 @@ Page({
   },
   onPullDownRefresh() {
     console.log('onPullDownRefresh');
+    setTimeout(function() {
+      wx.stopPullDownRefresh();
+    } ,1500);
   },
   onReachBottom() {
     console.log('onReachBottom');
   },
   getDetail(id) {
     wx.request({
-      url: 'https://cnodejs.org/api/v1/topic/' + id + '?mdrender=false',
+      url: `https://cnodejs.org/api/v1/topic/${id}?mdrender=false`,
       method: 'get',
       success: (res) => {
         let article = res.data.data.content;
@@ -54,13 +57,9 @@ Page({
         wx.hideLoading();
       },
       fail: (res) => {
-        // console.log(res);
+        console.log(res);
       },
       complete: res => {
-        // console.log(res);
-        // this.setData({
-        //   loading: false,
-        // });
       }
     })
   }

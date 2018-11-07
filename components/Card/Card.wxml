@@ -8,7 +8,7 @@
   </view>
   <view class='title ellipsis'>{{ obj.title }}</view>
   <view class='body'>
-    <view class='abstract ellipsis'>{{ filter.extract(obj.content) }}</view>
+    <view class='abstract ellipsis'>{{ obj.content }}</view>
   </view>
   <view class='footer'>
     <image lazy-load="true" src="{{ obj.author.avatar_url }}"></image>
