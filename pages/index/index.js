@@ -35,14 +35,16 @@ Page({
       url: '../detail/detail?id=' + e.currentTarget.dataset.id,
     })
   },
-  onLoad: function() {
+  onLoad: function (options) {
     wx.showLoading({
       title: '加载中...',
     });
+    if (options.id) {
+      wx.navigateTo({
+        url: `/pages/detail/detail?id=${options.id}`
+      })
+    }
     this.fetchData('all', this.data.all.page);
-    // wx.setNavigationBarTitle({
-    //   title: 'CNodePlus'
-    // });
     wx.getSystemInfo({
       success: (res) => {
         this.setData({

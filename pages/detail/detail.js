@@ -10,12 +10,18 @@ Page({
   tap() {
     console.log('tap')
   },
+  onShareAppMessage: function (res) {
+    console.log(`id = ${this.data.id}`);
+    return {
+      title: this.data.title,
+      path: `/pages/index/index?id=${this.data.id}`
+    }
+  },
   onLoad(options) {
     wx.showLoading({
       title: '加载中',
     });
     var id = options.id;
-    console.log('id= ' + id);
     this.getDetail(id);
     wx.setNavigationBarTitle({ title: 'Detail' });
   },
@@ -32,12 +38,14 @@ Page({
       success: (res) => {
         let article = res.data.data.content;
         const {
+          id,
           author,
           title,
           create_at,
         } = res.data.data;
         let data = app.towxml.toJson(article, 'markdown');
         this.setData({
+          id,
           article: data,
           author,
           title,
