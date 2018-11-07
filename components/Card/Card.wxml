@@ -3,16 +3,16 @@
 
 <view class='card'>
   <view class='header'>
-    <tag tagType="{{ data.tab }}" />
-    <view class='num'><view class='highlight'>{{ data.reply_count }}</view>/{{ data.visitCount }}</view>
+    <tag tagType="{{ obj.tag }}" />
+    <view class='num'><view class='highlight'>{{ obj.replyCount }}</view>/{{ obj.visitCount }}</view>
   </view>
-  <view class='title ellipsis'>{{ data.title }}</view>
+  <view class='title ellipsis'>{{ obj.title }}</view>
   <view class='body'>
-    <view class='abstract ellipsis'>{{ filter.extract(title) }}</view>
+    <view class='abstract ellipsis'>{{ filter.extract(obj.content) }}</view>
   </view>
   <view class='footer'>
-    <image src="{{ author.avatar_url }}"></image>
-    <view class='author'>{{ author.loginname }}</view>
-    <view class='post-date'>创建于：{{ create_at }}</view>
+    <image src="{{ obj.author.avatar_url }}"></image>
+    <view class='author'>{{ obj.author.loginname }}</view>
+    <view class='post-date'>创建于：{{ obj.createAt }}</view>
   </view>
 </view>

@@ -1,5 +1,5 @@
 //index.js
-const http = require('../../utils/httpClient.js');
+const util = require('../../utils/util.js')
 
 //获取应用实例
 const app = getApp()
@@ -22,12 +22,12 @@ Page({
     noMore: false,
     currentTab: 0,
   },
-  bindViewTap: function(e) {
+  bindViewTap: function (e) {
     wx.navigateTo({
       url: '../detail/detail?id=' + e.currentTarget.dataset.id,
     })
   },
-  onLoad: function() {
+  onLoad: function () {
     wx.showLoading({
       title: '加载中...',
     });
@@ -43,20 +43,33 @@ Page({
       }
     });
   },
-  fetchData: function(tab, page) {
+  fetchData: function (tab, page) {
     wx.request({
       method: 'get',
-      url: `https://cnodejs.org/api/v1/topics?tab=${tab}&page=${page}`,
+      url: `https://cnodejs.org/api/v1/topics?tab=${tab}&page=${page}&mdrender=false`,
       header: {
         'content-type': 'application/x-www-form-urlencoded',
       },
       success: (res) => {
         var list = res.data.data;
         list = list.map((item, index) => {
+          let tag = '';
+          if (item.top === true) {
+            tag = 'top';
+          } else if (item.good === true) {
+            tag = 'good';
+          } else {
+            tag = item.tab;
+          }
           return {
             author: item.author,
             title: item.title,
+            content: item.content,
             id: item.id,
+            tag: tag,
+            replyCount: item.reply_count,
+            visitCount: item.visit_count,
+            createAt: util.formatTime(new Date(item.create_at)),
           }
         });
 
@@ -68,10 +81,10 @@ Page({
           });
         } else {
           var newList = []
-          
+
           if (tab === 'good') {
             newList = this.data.good.list.concat(list);
-            
+
             this.setData({
               good: {
                 list: newList,
@@ -111,7 +124,7 @@ Page({
       },
     })
   },
-  loadMore: function(e) {
+  loadMore: function (e) {
     const tab = e.target.dataset.tab;
     console.log(`loadmore tab = ${tab}  page = ` + this.data[tab].page);
     this.setData({
@@ -120,18 +133,18 @@ Page({
     this.fetchData(tab, this.data[tab].page);
   },
   //滑动切换
-  swiperTab: function(e) {
+  swiperTab: function (e) {
     const currentTabIndex = e.detail.current;
     this.setData({
       currentTab: currentTabIndex
     });
     const tab = this.getTabNameByIndex(currentTabIndex);
-    if (this.data[tab].page <= 3 ) {
+    if (this.data[tab].page <= 3) {
       this.loadWithTab(currentTabIndex);
     }
   },
   //点击切换
-  clickTab: function(e) {
+  clickTab: function (e) {
     const currentTab = this.data.currentTab;
     const currentTabIndex = e.target.dataset.current;
     if (currentTab === e.target.dataset.current) {
@@ -152,7 +165,7 @@ Page({
     this.fetchData(tab, this.data[tab].page);
   },
 
-  getTabNameByIndex: function(index) {
+  getTabNameByIndex: function (index) {
     let tab = '';
     if (index == '0') {
       tab = 'good';

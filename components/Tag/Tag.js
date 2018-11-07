@@ -16,15 +16,15 @@ Component({
   data: {
     text: '',
   },
-  
+
   ready() {
     const type = this.data.tagType;
     let text = '';
     let clazz = '';
-    if(type === 'top') {
+    if (type === 'top') {
       text = '置顶';
       clazz = 'green';
-    } else if(type === 'good') {
+    } else if (type === 'good') {
       text = '精华';
       clazz = 'green';
     } else if (type === 'share') {
@@ -37,6 +37,7 @@ Component({
       text = '招聘';
       clazz = 'gray';
     }
+
     this.setData({
       clazz,
       text,

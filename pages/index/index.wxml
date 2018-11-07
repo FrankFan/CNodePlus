@@ -1,6 +1,5 @@
 <!--index.wxml-->
 <view class="container">
-  <!-- <card data="{{  }}" /> -->
   
   <view class="swiper-tab">
     <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">精华</view>
@@ -8,7 +7,7 @@
     <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">招聘</view>
   </view>
 
-<swiper class="swiper" current="{{currentTab}}" duration="300" style="height:{{height -45 }}px" bindchange="swiperTab">
+  <swiper class="swiper" current="{{currentTab}}" duration="300" style="height:{{height -45 }}px" bindchange="swiperTab">
     <swiper-item >
       <scroll-view 
         class='scroll-view'
@@ -19,27 +18,13 @@
         bindscrolltolower="loadMore" 
         bindscrolltoupper="refresh">
         <card 
-          data="{{ good.list[0] }}"
+          wx:for="{{ good.list }}" 
+          wx:for-item="item" 
+          wx:key=" {{ item.index }}"
+          data-id="{{ item.id }}"
+          obj="{{ item }}"
           bindtap="bindViewTap">
         </card>
-        <!-- wx:for="{{ good.list }}" 
-          wx:key=" {{ item.index }}"
-          wx:for-item="item" 
-          data-id="{{ item.id }}" -->
-        <!-- <view class="topic-list-item" 
-          wx:for="{{ good.list }}" 
-          wx:key=" {{ item.index }}"
-          wx:for-item="item" 
-          data-id="{{ item.id }}"
-          bindtap="bindViewTap">
-          <image src="{{ item.author.avatar_url }}"></image>
-          <view class="text">
-            <view class='title'> 标题:{{item.title}}</view>
-            <view class='author'> 
-              作者:{{item.author.loginname}}
-            </view>
-          </view>
-        </view> -->
         <view class="footer">
           <view wx:if="{{hasMore}}" class='footer-loading'>
             <icon type="waiting" size="25" />
@@ -61,20 +46,14 @@
         data-tab='share' 
         bindscrolltolower="loadMore" 
         bindscrolltoupper="refesh">
-        <view class="topic-list-item" 
+        <card 
           wx:for="{{ share.list }}" 
-          wx:key=" {{ item.index }}"
           wx:for-item="item" 
+          wx:key=" {{ item.index }}"
           data-id="{{ item.id }}"
+          obj="{{ item }}"
           bindtap="bindViewTap">
-          <image src="{{ item.author.avatar_url }}"></image>
-          <view class="text">
-            <view class='title'> 标题:{{item.title}}</view>
-            <view class='author'> 
-              作者:{{item.author.loginname}}
-            </view>
-          </view>
-        </view>
+        </card>
         <view class="footer">
           <view wx:if="{{hasMore}}" class='footer-loading'>
             <icon type="waiting" size="25" />
@@ -96,20 +75,14 @@
         data-tab='job' 
         bindscrolltolower="loadMore" 
         bindscrolltoupper="refesh">
-        <view class="topic-list-item" 
+        <card 
           wx:for="{{ job.list }}" 
-          wx:key=" {{ item.index }}"
           wx:for-item="item" 
+          wx:key=" {{ item.index }}"
           data-id="{{ item.id }}"
+          obj="{{ item }}"
           bindtap="bindViewTap">
-          <image src="{{ item.author.avatar_url }}"></image>
-          <view class="text">
-            <view class='title'> 标题:{{item.title}}</view>
-            <view class='author'> 
-              作者:{{item.author.loginname}}
-            </view>
-          </view>
-        </view>
+        </card>
         <view class="footer">
           <view wx:if="{{hasMore}}" class='footer-loading'>
             <icon type="waiting" size="25" />
