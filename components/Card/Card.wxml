@@ -3,7 +3,7 @@
 
 <view class='card'>
   <view class='header'>
-    <tag tagType="{{ obj.tag }}" />
+    <tag tagClass="{{ obj.tagClass }}" tagText="{{ obj.tagText }}" />
     <view class='num'><view class='highlight'>{{ obj.replyCount }}</view>/{{ obj.visitCount }}</view>
   </view>
   <view class='title ellipsis'>{{ obj.title }}</view>
@@ -11,7 +11,7 @@
     <view class='abstract ellipsis'>{{ filter.extract(obj.content) }}</view>
   </view>
   <view class='footer'>
-    <image src="{{ obj.author.avatar_url }}"></image>
+    <image lazy-load="true" src="{{ obj.author.avatar_url }}"></image>
     <view class='author'>{{ obj.author.loginname }}</view>
     <view class='post-date'>创建于：{{ obj.createAt }}</view>
   </view>

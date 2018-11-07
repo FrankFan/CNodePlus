@@ -1,13 +1,12 @@
 /* components/Tag/Tag.wxss */
 
-.green,
-.gray {
+.tag {
   padding: 0px 4px;
   font-size: 14px;
   border-radius: 4px;
 }
 
-.green {
+.green, .top, .good {
   background: #09bb07;
   color: #fff;
 }

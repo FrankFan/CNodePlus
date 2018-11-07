@@ -4,10 +4,11 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    tagType: {
+    tagClass: {
       type: String,
-      value: 'pop',
-    }
+      value: '',
+    },
+    tagText: String,
   },
 
   /**
@@ -18,30 +19,6 @@ Component({
   },
 
   ready() {
-    const type = this.data.tagType;
-    let text = '';
-    let clazz = '';
-    if (type === 'top') {
-      text = '置顶';
-      clazz = 'green';
-    } else if (type === 'good') {
-      text = '精华';
-      clazz = 'green';
-    } else if (type === 'share') {
-      text = '分享';
-      clazz = 'gray';
-    } else if (type === 'ask') {
-      text = '问答';
-      clazz = 'gray';
-    } else if (type === 'job') {
-      text = '招聘';
-      clazz = 'gray';
-    }
-
-    this.setData({
-      clazz,
-      text,
-    });
   },
 
   /**

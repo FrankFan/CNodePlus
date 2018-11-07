@@ -1,2 +1,2 @@
 <!--components/Tag/Tag.wxml-->
-<view class='{{ clazz }}'>{{ text }}</view>
+<view class='tag {{ tagClass }}'>{{ tagText }}</view>

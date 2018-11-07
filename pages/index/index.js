@@ -6,11 +6,19 @@ const app = getApp()
 
 Page({
   data: {
+    all: {
+      list: [],
+      page: 1,
+    },
     good: {
       list: [],
       page: 1,
     },
     share: {
+      list: [],
+      page: 1,
+    },
+    ask: {
       list: [],
       page: 1,
     },
@@ -22,19 +30,19 @@ Page({
     noMore: false,
     currentTab: 0,
   },
-  bindViewTap: function (e) {
+  bindViewTap: function(e) {
     wx.navigateTo({
       url: '../detail/detail?id=' + e.currentTarget.dataset.id,
     })
   },
-  onLoad: function () {
+  onLoad: function() {
     wx.showLoading({
       title: '加载中...',
     });
-    this.fetchData('good', this.data.good.page);
-    wx.setNavigationBarTitle({
-      title: 'CNodePlus'
-    });
+    this.fetchData('all', this.data.all.page);
+    // wx.setNavigationBarTitle({
+    //   title: 'CNodePlus'
+    // });
     wx.getSystemInfo({
       success: (res) => {
         this.setData({
@@ -43,7 +51,7 @@ Page({
       }
     });
   },
-  fetchData: function (tab, page) {
+  fetchData: function(tab, page) {
     wx.request({
       method: 'get',
       url: `https://cnodejs.org/api/v1/topics?tab=${tab}&page=${page}&mdrender=false`,
@@ -53,20 +61,17 @@ Page({
       success: (res) => {
         var list = res.data.data;
         list = list.map((item, index) => {
-          let tag = '';
-          if (item.top === true) {
-            tag = 'top';
-          } else if (item.good === true) {
-            tag = 'good';
-          } else {
-            tag = item.tab;
-          }
+          const {
+            tagClass,
+            tagText,
+          } = util.formatTagData(item.top, item.good, item.tab)
           return {
             author: item.author,
             title: item.title,
-            content: item.content,
+            content: item.content && item.content.substring(0, 100),
             id: item.id,
-            tag: tag,
+            tagClass,
+            tagText,
             replyCount: item.reply_count,
             visitCount: item.visit_count,
             createAt: util.formatTime(new Date(item.create_at)),
@@ -82,7 +87,16 @@ Page({
         } else {
           var newList = []
 
-          if (tab === 'good') {
+          if (tab === 'all') {
+            newList = this.data.all.list.concat(list);
+            this.setData({
+              all: {
+                list: newList,
+                page: page + 1,
+              },
+              hasMore: false,
+            });
+          } else if (tab === 'good') {
             newList = this.data.good.list.concat(list);
 
             this.setData({
@@ -97,6 +111,15 @@ Page({
             const share = this.data.share;
             this.setData({
               share: {
+                list: newList,
+                page: page + 1,
+              },
+              hasMore: false,
+            });
+          } else if (tab === 'ask') {
+            newList = this.data.ask.list.concat(list);
+            this.setData({
+              ask: {
                 list: newList,
                 page: page + 1,
               },
@@ -124,7 +147,7 @@ Page({
       },
     })
   },
-  loadMore: function (e) {
+  loadMore: function(e) {
     const tab = e.target.dataset.tab;
     console.log(`loadmore tab = ${tab}  page = ` + this.data[tab].page);
     this.setData({
@@ -132,8 +155,11 @@ Page({
     });
     this.fetchData(tab, this.data[tab].page);
   },
+  refresh: function() {
+    console.log('scrolltoupper');
+  },
   //滑动切换
-  swiperTab: function (e) {
+  swiperTab: function(e) {
     const currentTabIndex = e.detail.current;
     this.setData({
       currentTab: currentTabIndex
@@ -144,7 +170,7 @@ Page({
     }
   },
   //点击切换
-  clickTab: function (e) {
+  clickTab: function(e) {
     const currentTab = this.data.currentTab;
     const currentTabIndex = e.target.dataset.current;
     if (currentTab === e.target.dataset.current) {
@@ -157,7 +183,7 @@ Page({
     this.loadWithTab(currentTabIndex);
   },
 
-  loadWithTab: function (currentTabIndex) {
+  loadWithTab: function(currentTabIndex) {
     wx.showLoading({
       title: '加载中...',
     });
@@ -165,13 +191,17 @@ Page({
     this.fetchData(tab, this.data[tab].page);
   },
 
-  getTabNameByIndex: function (index) {
+  getTabNameByIndex: function(index) {
     let tab = '';
     if (index == '0') {
-      tab = 'good';
+      tab = 'all';
     } else if (index == '1') {
-      tab = 'share';
+      tab = 'good';
     } else if (index == '2') {
+      tab = 'share';
+    } else if (index == '3') {
+      tab = 'ask';
+    } else if (index == '4') {
       tab = 'job';
     }
     return tab;

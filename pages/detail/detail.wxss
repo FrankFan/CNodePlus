@@ -9,11 +9,13 @@ view.h2w {
 
 .container {
   padding: 0 40rpx;
+  background: #fff;
 }
 
 .container .title {
   font-weight: bold;
   text-align: center;
+  padding-top: 6px;
 }
 
 .container .wrap {

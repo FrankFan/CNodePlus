@@ -1,10 +1,11 @@
 <!--index.wxml-->
 <view class="container">
-  
   <view class="swiper-tab">
-    <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">精华</view>
-    <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">分享</view>
-    <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">招聘</view>
+    <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">全部</view>
+    <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">精华</view>
+    <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">分享</view>
+    <view class="swiper-tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="clickTab">问答</view>
+    <view class="swiper-tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="clickTab">招聘</view>
   </view>
 
   <swiper class="swiper" current="{{currentTab}}" duration="300" style="height:{{height -45 }}px" bindchange="swiperTab">
@@ -14,9 +15,39 @@
         scroll-y="true" 
         enable-back-to-top="true"
         style="height:{{ height - 45 }}px"
-        data-tab='good' 
+        data-tab='all' 
         bindscrolltolower="loadMore" 
         bindscrolltoupper="refresh">
+
+        <card 
+          wx:for="{{ all.list }}" 
+          wx:for-item="item" 
+          wx:key=" {{ item.index }}"
+          data-id="{{ item.id }}"
+          obj="{{ item }}"
+          bindtap="bindViewTap">
+        </card>
+        <view class="footer">
+          <view wx:if="{{hasMore}}" class="weui-loadmore">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+          </view>
+          <view class='noMore' wx:if="{{ noMore }}">
+            <text>没有更多内容了</text>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+
+    <swiper-item>
+      <scroll-view 
+        class='scroll-view'
+        scroll-y="true" 
+        enable-back-to-top="true"
+        style="height:{{ height - 45 }}px"
+        data-tab='good' 
+        bindscrolltolower="loadMore" 
+        bindscrolltoupper="refesh">
         <card 
           wx:for="{{ good.list }}" 
           wx:for-item="item" 
@@ -26,12 +57,12 @@
           bindtap="bindViewTap">
         </card>
         <view class="footer">
-          <view wx:if="{{hasMore}}" class='footer-loading'>
-            <icon type="waiting" size="25" />
-            <text>玩命加载中...</text>
+          <view wx:if="{{hasMore}}" class="weui-loadmore">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
           </view>
           <view class='noMore' wx:if="{{ noMore }}">
-            <text>没有更多内容</text>
+            <text>没有更多内容了</text>
           </view>
         </view>
       </scroll-view>
@@ -55,12 +86,41 @@
           bindtap="bindViewTap">
         </card>
         <view class="footer">
-          <view wx:if="{{hasMore}}" class='footer-loading'>
-            <icon type="waiting" size="25" />
-            <text>玩命加载中...</text>
+          <view wx:if="{{hasMore}}" class="weui-loadmore">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
           </view>
           <view class='noMore' wx:if="{{ noMore }}">
-            <text>没有更多内容</text>
+            <text>没有更多内容了</text>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+
+    <swiper-item>
+      <scroll-view 
+        class='scroll-view'
+        scroll-y="true" 
+        enable-back-to-top="true"
+        style="height:{{ height - 45 }}px"
+        data-tab='ask' 
+        bindscrolltolower="loadMore" 
+        bindscrolltoupper="refesh">
+        <card 
+          wx:for="{{ ask.list }}" 
+          wx:for-item="item" 
+          wx:key=" {{ item.index }}"
+          data-id="{{ item.id }}"
+          obj="{{ item }}"
+          bindtap="bindViewTap">
+        </card>
+        <view class="footer">
+          <view wx:if="{{hasMore}}" class="weui-loadmore">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+          </view>
+          <view class='noMore' wx:if="{{ noMore }}">
+            <text>没有更多内容了</text>
           </view>
         </view>
       </scroll-view>
@@ -84,12 +144,12 @@
           bindtap="bindViewTap">
         </card>
         <view class="footer">
-          <view wx:if="{{hasMore}}" class='footer-loading'>
-            <icon type="waiting" size="25" />
-            <text>玩命加载中...</text>
+          <view wx:if="{{hasMore}}" class="weui-loadmore">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
           </view>
           <view class='noMore' wx:if="{{ noMore }}">
-            <text>没有更多内容</text>
+            <text>没有更多内容了</text>
           </view>
         </view>
       </scroll-view>
