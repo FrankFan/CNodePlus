@@ -3,33 +3,60 @@
 @import '/towxml/style/main.wxss';
 @import '/towxml/style/theme/light.wxss';
 
-view.h2w {
-  padding-bottom: 50rpx;
+.detail {
+  background: #fff;
+  margin: 20rpx;
+  border-radius: 10px;
+  padding-top:10px;
 }
 
-.container {
-  padding: 0 40rpx;
+.detail .top {
   background: #fff;
 }
 
-.container .title {
+.detail .title {
   font-weight: bold;
   text-align: center;
   padding-top: 6px;
+  padding: 6px 15px;
 }
 
-.container .wrap {
+.detail .wrap {
   display: flex;
   font-size: 14px;
   padding-top: 4px;
+  padding: 0 20rpx;
 }
 
-.container .wrap .name {
+.detail .wrap .name {
   flex: init;
   padding-right: 20px;
 }
 
-.container .wrap .date {
+.detail .wrap .date {
   flex: 1;
   text-align: right;
+}
+
+.detail .h2w {
+  padding: 0 40rpx 50rpx;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.detail .h2w .h2w__main {
+  margin: 0;
+}
+
+.comments {
+  margin-top: 20rpx;
+  background: #fff;
+  margin: 20rpx 20rpx;
+  border-radius: 15rpx;
+}
+
+.comments .total {
+  padding: 20rpx;
+  font-size: 30rpx;
+  border-bottom: 1px solid #eee;
 }

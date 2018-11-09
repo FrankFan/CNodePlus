@@ -1,0 +1,12 @@
+<!--components/Comment/Comment.wxml-->
+<view class='comment'>
+  <view wx:if="{{ reply.index > 0 }}" class='info'>
+    <image src='{{ reply.avatarUrl}}'></image>
+    <view class='right'>
+      <view><text class='name'>{{ reply.loginname }}</text></view>
+      <view><text class='index'>{{ reply.index }}楼</text> <text class='dot'>·</text> 
+      <text class='date'>{{ reply.replyDate }}</text></view>
+    </view>
+  </view>
+  <view class='contents'>{{ reply.content }}</view>
+</view>

@@ -1,0 +1,49 @@
+/* components/Comment/Comment.wxss */
+.comment {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.comment .info {
+  display: flex;
+  align-items: center;
+}
+
+.comment image {
+  flex: initial;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+
+.comment .right {
+  flex: 1;
+  padding-left: 40rpx;
+}
+
+.comment .right .index{
+  color: #1AAD16;
+  font-size: 28rpx;
+}
+
+.comment .right .dot{
+  padding: 0 10rpx;
+}
+
+.comment .right .date{
+  font-size: 28rpx;
+  color: #b2b2b2;
+}
+
+.comment .right .name{
+  font-size: 32rpx;
+}
+
+.comment .contents {
+  font-family: "STHeitiTC-Light", "Microsoft YaHei Light", "Hiragino Sans GB", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.8;
+  word-wrap: break-word;
+  word-break:break-all;
+  font-size: 32rpx;
+}
+

@@ -2,12 +2,26 @@
 
 <import src="/towxml/entry.wxml"/>
 
-<view class="container">
-  <view class="title">{{ title }}</view>
-  <view class="wrap">
-    <view class="name">{{ author.loginname }}</view>
-    <view class="date">{{ create_at }}</view>
+<view class="detail">
+  <view class='top'>
+    <view class="title">{{ title }}</view>
+    <view class="wrap">
+      <view class="name">{{ author.loginname }}</view>
+      <view class="date">{{ create_at }}</view>
+    </view>
   </view>
+
+  <template is="entry" data="{{...article}}"/>
 </view>
 
-<template is="entry" data="{{...article}}"/>
+<view class='comments'>
+  <!-- <comment reply="{{reply}}" /> -->
+  <view class='total'>{{replies.length}}条评论</view>
+  <comment
+    wx:for="{{ replies }}" 
+    wx:for-item="item" 
+    wx:key=" {{ item.index }}"
+    reply="{{ item }}">
+  </comment>
+</view>
+
