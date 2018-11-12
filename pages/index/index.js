@@ -32,7 +32,7 @@ Page({
   },
   bindViewTap: function(e) {
     wx.navigateTo({
-      url: '../detail/detail?id=' + e.currentTarget.dataset.id,
+      url: `../detail/detail?id=${e.currentTarget.dataset.id}`,
     })
   },
   onLoad: function (options) {
@@ -55,13 +55,25 @@ Page({
   },
   fetchData: function(tab, page) {
     wx.request({
-      method: 'get',
-      url: `https://cnodejs.org/api/v1/topics?tab=${tab}&page=${page}&mdrender=false`,
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
+      method: 'GET',
+      url: `https://cnodejs.org/api/v1/topics`,
+      data: {
+        tab,
+        page,
+        mdrender: false,
+        limit: 15,
       },
+      dataType: 'json',
       success: (res) => {
-        var list = res.data.data;
+        var data = res.data;
+        var list = [];
+        // if(typeof data === 'string') {
+        //   data = 
+        // }
+        if(data.data && data.data.length > 0) {
+          list = data.data;
+        }
+        // var list = res.data.data;
         list = list.map((item, index) => {
           const {
             tagClass,
@@ -80,9 +92,12 @@ Page({
           }
         });
 
-        if (list.length < 40) {
+        if (list.length < 15 && this.data.all.page > 1) {
           console.log('最后一页');
           this.setData({
+            all: {
+              list,
+            },
             noMore: true,
             hasMore: false,
           });
@@ -96,6 +111,7 @@ Page({
                 list: newList,
                 page: page + 1,
               },
+              noMore: false,
               hasMore: false,
             });
           } else if (tab === 'good') {
@@ -106,6 +122,7 @@ Page({
                 list: newList,
                 page: page + 1,
               },
+              noMore: false,
               hasMore: false,
             });
           } else if (tab === 'share') {
@@ -116,6 +133,7 @@ Page({
                 list: newList,
                 page: page + 1,
               },
+              noMore: false,
               hasMore: false,
             });
           } else if (tab === 'ask') {
@@ -125,6 +143,7 @@ Page({
                 list: newList,
                 page: page + 1,
               },
+              noMore: false,
               hasMore: false,
             });
           } else if (tab === 'job') {
@@ -134,6 +153,7 @@ Page({
                 list: newList,
                 page: page + 1,
               },
+              noMore: false,
               hasMore: false,
             });
           }

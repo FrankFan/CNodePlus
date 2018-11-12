@@ -39,8 +39,8 @@ Page({
   },
   getDetail(id) {
     wx.request({
+      method: 'GET',
       url: `https://cnodejs.org/api/v1/topic/${id}?mdrender=false`,
-      method: 'get',
       success: (res) => {
         let article = res.data.data.content;
         const {
