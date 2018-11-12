@@ -68,12 +68,12 @@ Page({
         var data = res.data;
         var list = [];
         // if(typeof data === 'string') {
-        //   data = 
+        //   data = todo here
+        // https://developers.weixin.qq.com/community/develop/doc/65e75c21d2fc4c97a12faafb92ee05b9
         // }
         if(data.data && data.data.length > 0) {
           list = data.data;
         }
-        // var list = res.data.data;
         list = list.map((item, index) => {
           const {
             tagClass,
